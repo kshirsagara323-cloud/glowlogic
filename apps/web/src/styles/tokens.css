@@ -1,0 +1,53 @@
+/* Design tokens. Every text/background pair was contrast-checked (see docs/design-system.md). */
+:root {
+  color-scheme: light dark;
+
+  --bg: #fbf7f4;
+  --surface: #ffffff;
+  --text: #2a1e24;
+  --muted: #5e4f57;
+  --border: #8c7b84;          /* form controls: 3:1+ against background */
+  --border-soft: #d9ccc5;     /* decorative card edges only */
+  --accent: #8a2f57;
+  --accent-hover: #6f2345;
+  --on-accent: #ffffff;
+  --note-bg: #f3e9f0;
+  --ok-bg: #e7f3ec;
+  --ok-text: #1e5b3a;
+  --warn-bg: #fff1d6;
+  --warn-text: #7a4a00;
+  --focus: #1d4ed8;
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --max-width: 68rem;
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17111a;
+    --surface: #221a26;
+    --text: #f4ecef;
+    --muted: #bfb1b8;
+    --border: #85748d;
+    --border-soft: #3b2f41;
+    --accent: #e6a0c0;
+    --accent-hover: #f0b8d0;
+    --on-accent: #1b0f17;
+    --note-bg: #2e2234;
+    --ok-bg: #17301f;
+    --ok-text: #9be0b5;
+    --warn-bg: #3a2a05;
+    --warn-text: #ffd58a;
+    --focus: #8eb4ff;
+  }
+}
