@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes, SelectHTMLAttributes } from 'react';
 
 interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -52,6 +52,27 @@ export function CheckField({ id, label, error, ...input }: CheckFieldProps) {
           {error}
         </p>
       )}
+    </div>
+  );
+}
+
+interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  id: string;
+  label: string;
+  options: { value: string; label: string }[];
+  placeholder?: string;
+}
+
+export function SelectField({ id, label, options, placeholder = 'Prefer not to say', ...select }: SelectFieldProps) {
+  return (
+    <div className="field">
+      <label htmlFor={id}>{label}</label>
+      <select id={id} className="input" {...select}>
+        <option value="">{placeholder}</option>
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>{o.label}</option>
+        ))}
+      </select>
     </div>
   );
 }
