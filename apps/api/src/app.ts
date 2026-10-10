@@ -7,6 +7,7 @@ import type { TokenVerifier } from './auth/verifyToken.js';
 import type { Config } from './config.js';
 import { errorHandler } from './errors.js';
 import { requireAuth } from './middleware/requireAuth.js';
+import { assessmentsRouter, quizRouter } from './routes/assessments.js';
 import { healthRouter } from './routes/health.js';
 import { meRouter } from './routes/me.js';
 
@@ -34,8 +35,11 @@ export function createApp({ config, pool, verifyToken, deleteAuthUser }: AppDeps
   app.use(express.json({ limit: '100kb' }));
   app.use('/api', rateLimit({ windowMs: 60_000, limit: 120, standardHeaders: 'draft-7', legacyHeaders: false }));
 
+  const auth = requireAuth(verifyToken, pool);
   app.use(healthRouter(pool, config));
-  app.use('/api/v1/me', requireAuth(verifyToken, pool), meRouter({ pool, deleteAuthUser }));
+  app.use('/api/v1/quiz', quizRouter()); // public: contains no personal data
+  app.use('/api/v1/me', auth, meRouter({ pool, deleteAuthUser }));
+  app.use('/api/v1/assessments', auth, assessmentsRouter(pool));
 
   app.use((_req, res) => {
     res.status(404).json({ error: { code: 'not_found', message: 'Not found.' } });

@@ -37,6 +37,7 @@ export function AppShell() {
               <li><NavLink to="/privacy">Privacy</NavLink></li>
               {status === 'signedIn' ? (
                 <>
+                  <li><NavLink to="/assessment">Assessment</NavLink></li>
                   <li><NavLink to="/account">Account</NavLink></li>
                   <li><button type="button" className="nav-button" onClick={() => void onSignOut()}>Log out</button></li>
                 </>
