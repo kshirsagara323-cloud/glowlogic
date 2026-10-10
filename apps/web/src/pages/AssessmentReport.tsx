@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button } from '../components/Button';
+import { Button, ButtonLink } from '../components/Button';
 import { ConfidenceBadge } from '../components/ConfidenceBadge';
 import { SelectField } from '../components/Field';
 import { ApiError } from '../lib/api';
@@ -186,7 +186,7 @@ export function AssessmentReport() {
       </section>
 
       <p className="note">{result.disclaimer}</p>
-      <p className="muted">Routine and product recommendations arrive in the next phase.</p>
+      <ButtonLink to={`/assessment/${detail.id}/routine`}>See my routine and products</ButtonLink>
 
       <section className="danger-zone" aria-labelledby="del-title">
         <h2 id="del-title">Delete this assessment</h2>

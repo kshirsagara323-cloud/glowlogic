@@ -13,6 +13,7 @@ import { NotFound } from './pages/NotFound';
 import { Privacy } from './pages/Privacy';
 import { Register } from './pages/Register';
 import { RouteError } from './pages/RouteError';
+import { RoutinePage } from './pages/RoutinePage';
 import { UpdatePassword } from './pages/UpdatePassword';
 
 // Kept separate from main.tsx so tests can build an in-memory router from the same routes.
@@ -37,6 +38,7 @@ export const routes: RouteObject[] = [
         { path: 'assessment', element: <AssessmentHome /> },
         { path: 'assessment/new', element: <AssessmentQuiz /> },
         { path: 'assessment/:id', element: <AssessmentReport /> },
+        { path: 'assessment/:id/routine', element: <RoutinePage /> },
       ],
     },
       { path: '*', element: <NotFound /> },

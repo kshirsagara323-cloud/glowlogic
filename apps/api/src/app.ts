@@ -10,6 +10,7 @@ import { requireAuth } from './middleware/requireAuth.js';
 import { assessmentsRouter, quizRouter } from './routes/assessments.js';
 import { healthRouter } from './routes/health.js';
 import { meRouter } from './routes/me.js';
+import { recommendationsRouter } from './routes/recommendations.js';
 
 export interface AppDeps {
   config: Config;
@@ -39,6 +40,7 @@ export function createApp({ config, pool, verifyToken, deleteAuthUser }: AppDeps
   app.use(healthRouter(pool, config));
   app.use('/api/v1/quiz', quizRouter()); // public: contains no personal data
   app.use('/api/v1/me', auth, meRouter({ pool, deleteAuthUser }));
+  app.use('/api/v1/assessments/:id/recommendations', auth, recommendationsRouter(pool));
   app.use('/api/v1/assessments', auth, assessmentsRouter(pool));
 
   app.use((_req, res) => {
